@@ -2,11 +2,11 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import z from 'zod'
+import { Seo } from '@/components/seo'
 
 const signUpForm = z.object({
   restaurantName: z.string(),
@@ -37,9 +37,12 @@ export function SignUp () {
 
   return (
     <div>
-      <Helmet>
-        <title>Cadastro</title>
-      </Helmet>
+      <Seo
+        title='Cadastro'
+        description='SignUn to start managing your business'
+        name='pizza.shop'
+        type='manager'
+      />
       <div className='p-8'>
         <Button variant='ghost' asChild className='absolute right-8 top-8'>
           <Link to='/auth/sign-in'>

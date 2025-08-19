@@ -1,15 +1,18 @@
 import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Helmet } from 'react-helmet-async'
 import { OrderTableRow } from './order-table-row'
 import { OrderTableFilters } from './order-table-filters'
 import { Pagination } from '@/components/pagination'
+import { Seo } from '@/components/seo'
 
 export function Orders () {
   return (
     <>
-      <Helmet>
-        <title>Pedidos</title>
-      </Helmet>
+      <Seo
+        title='Pedidos'
+        description='Check orders status'
+        name='pizza.shop'
+        type='manager'
+      />
       <div className='flex flex-col gap-4'>
         <h1 className='text-3xl font-bold tracking-tight'>Pedidos</h1>
         <div className='space-y-2.5'>

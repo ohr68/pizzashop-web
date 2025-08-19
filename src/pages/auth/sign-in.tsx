@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form'
-import { Helmet } from 'react-helmet-async'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -8,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
 import { Link } from 'react-router-dom'
+import { Seo } from '@/components/seo'
 
 const signInForm = z.object({
   email: z.email()
@@ -34,9 +34,12 @@ export function SignIn () {
 
   return (
     <div>
-      <Helmet>
-        <title>Login</title>
-      </Helmet>
+      <Seo
+        title='Login'
+        description='SignIn to see all the app resources'
+        name='pizza.shop'
+        type='manager'
+      />
       <div className='p-8'>
         <Button variant='ghost' asChild className='absolute right-8 top-8'>
           <Link to='/auth/sign-up'>

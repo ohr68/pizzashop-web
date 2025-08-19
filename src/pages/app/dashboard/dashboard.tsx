@@ -1,18 +1,20 @@
-import { Helmet } from 'react-helmet-async'
-
 import { MonthRevenueCard } from './month-revenue-card'
 import { MonthOrdersAmountCard } from './month-orders-amount-card'
 import { DayOrdersAmountCard } from './day-orders-amount-card'
 import { MonthCanceledOrdersAmountCard } from './month-canceled-orders-amount-card'
 import { RevenueChart } from './revenue-chart'
 import { PopularProductsChart } from './popular-products-chart'
+import { Seo } from '@/components/seo'
 
 export function Dashboard () {
   return (
     <>
-      <Helmet>
-        <title>Dashboard</title>
-      </Helmet>
+      <Seo
+        title='Dashboard'
+        description='Check orders and revenue infos'
+        name='pizza.shop'
+        type='manager'
+      />
       <div className='flex flex-col gap-4'>
         <h1 className='text-3xl font-bold tracking-tight'>
           Dashboard
