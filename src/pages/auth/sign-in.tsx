@@ -6,8 +6,10 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { Seo } from '@/components/seo'
+import { signIn } from '@/api/sign-in'
+import { useMutation } from '@tanstack/react-query'
 
 const signInForm = z.object({
   email: z.email()
@@ -16,20 +18,32 @@ const signInForm = z.object({
 type SignInForm = z.infer<typeof signInForm>
 
 export function SignIn () {
+  const [searchParams] = useSearchParams()
+
   const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignInForm>({
-    resolver: zodResolver(signInForm)
+    resolver: zodResolver(signInForm),
+    defaultValues: {
+      email: searchParams.get('email') ?? ''
+    }
+  })
+
+  const { mutateAsync: authenticate } = useMutation({
+    mutationFn: signIn,
   })
 
   async function handleSignIn (data: SignInForm) {
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    console.log(data)
+    try {
+      await authenticate({ email: data.email })
 
-    toast.success('Enviamos um link de autenticação para seu e-mail.', {
-      action: {
-        label: 'Reenviar',
-        onClick: () => {}
-      }
-    })
+      toast.success('Enviamos um link de autenticação para seu e-mail.', {
+        action: {
+          label: 'Reenviar',
+          onClick: () => {}
+        }
+      })
+    } catch {
+      toast.error('Credenciais inválidas.')
+    }
   }
 
   return (
