@@ -6,7 +6,7 @@ export function NotFound () {
     <>
       <Seo
         title='Not Found'
-        description='SignIn to see all the app resources'
+        description='Page not found'
         name='pizza.shop'
         type='user'
       />
