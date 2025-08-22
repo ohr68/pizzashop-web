@@ -1,14 +1,24 @@
-import path from "node:path"
-import tailwindcss from "@tailwindcss/vite"
-import { defineConfig } from 'vite'
+// vite.config.ts
+import path from 'node:path'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+import { defineConfig, mergeConfig } from 'vitest/config'
 
-// https://vite.dev/config/
-export default defineConfig({
+// Base Vite config
+const baseConfig = defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
+  },
+})
+
+// Vitest-specific config
+export default mergeConfig(baseConfig, {
+  test: {
+    globals: true,
+    environment: 'happy-dom',
+    setupFiles: ['./test/setup.ts'],
   },
 })
