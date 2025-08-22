@@ -18,7 +18,7 @@ const baseConfig = defineConfig({
 export default mergeConfig(baseConfig, {
   test: {
     globals: true,
-    environment: 'happy-dom',
+    environment: 'jsdom',
     setupFiles: ['./test/setup.ts'],
   },
 })
