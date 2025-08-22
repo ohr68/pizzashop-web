@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:mock": "vite --port 5004 --mode test",
     "build": "tsc -b && vite build",
     "lint": "eslint src --ext .ts,.tsx --fix",
     "preview": "vite preview",
@@ -60,5 +61,10 @@
     "typescript": "~5.8.3",
     "vite": "^7.1.2",
     "vitest": "^3.2.4"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
